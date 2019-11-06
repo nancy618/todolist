@@ -3,7 +3,13 @@
     <div class="box">
       <h2>&nbsp;待&nbsp;办&nbsp;事&nbsp;项</h2>
       <div class="content">
-        <input class="input1" type="text" >
+        <div class="modal"></div>
+
+        <input class="input1" type="text" v-model="value">
+
+        <input class="input2" type="text" v-model="value">
+
+
       </div>
     </div>
   </div>
@@ -44,6 +50,14 @@ export default {
     margin-bottom: 20px;
     width: 400px;
     height: 40px;
+
+  }
+
+  .input2 {
+    margin-bottom: 40px;
+    width: 400px;
+    height: 45px;
+
   }
 
   .btn1 {
@@ -53,4 +67,18 @@ export default {
   .content li {
     line-height: 40px;
   }
+
+  .modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 200px;
+    height: 260px;
+    z-index: 15;
+    background: pink ;
+  }
+
 </style>
