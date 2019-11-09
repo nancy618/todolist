@@ -1,33 +1,43 @@
 <template>
   <div id="app">
+    <div class="modal" v-if="showModal">
+
+    </div>
     <div class="box">
-      <h2>&nbsp;待&nbsp;办&nbsp;事&nbsp;项</h2>
+      <h2 @click="openModal">&nbsp;待&nbsp;办&nbsp;事&nbsp;项</h2>
       <div class="content">
-        <div class="modal"></div>
 
         <input class="input1" type="text" v-model="value">
-
-        <input class="input2" type="text" v-model="value">
 
 
       </div>
     </div>
   </div>
+
+
 </template>
 
 <script>
-export default {
-  name: 'app',
-  components: {
+  export default {
+    name: 'app',
+    data () {
+      return {
+        showModal: false
+      }
+    },
+    methods: {
+      openModal () {
+        this.showModal = false
+      }
+    }
   }
-}
 </script>
 
 <style>
   .box {
     width: 600px;
     height: 400px;
-    border: 2px solid gray ;
+    border: 2px solid gray;
     padding: 10px 5px 8px 15px;
     position: absolute;
     top: 50%;
@@ -36,7 +46,8 @@ export default {
     margin-top: -200px;
 
   }
-  h2{
+
+  h2 {
     text-align: center;
   }
 
@@ -53,17 +64,6 @@ export default {
 
   }
 
-  .input2 {
-    margin-bottom: 40px;
-    width: 400px;
-    height: 45px;
-
-  }
-
-  .btn1 {
-    float: right;
-  }
-
   .content li {
     line-height: 40px;
   }
@@ -78,7 +78,7 @@ export default {
     width: 200px;
     height: 260px;
     z-index: 15;
-    background: pink ;
+    background: pink;
   }
 
 </style>
