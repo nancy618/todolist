@@ -1,19 +1,23 @@
 <template>
   <div id="app">
     <div class="modal" v-if="showModal">
-
+      <textarea v-model="textValue"></textarea>
+      <div @click="confirm"><input type="button" value="确定"></div>
+      <div @click="close()"><input type="button" value="关闭"></div>
     </div>
     <div class="box">
-      <h2 @click="openModal" class="clearfix">
-        <div class="add">+</div>
+      <h2 class="clearfix">
+        <div class="add" @click="openModal">+</div>
         &nbsp;待&nbsp;&nbsp;办&nbsp;&nbsp;事&nbsp;项
       </h2>
       <div class="content">
 
 
-        <div class="input1">臭木木猪🐖</div>
+        <div class="list-item" v-for="(item, index) of list" :key="item-index" @click="deleteItem(index)">
+          <div></div>
+          {{index + 1}}. {{item}}
 
-
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +30,14 @@
     name: 'app',
     data() {
       return {
-        showModal: false
+        showModal: false,
+        list: [
+          '123',
+          '1234',
+          '1235',
+          '1236',
+        ],
+        textValue: ''
       }
     },
     methods: {
@@ -34,6 +45,17 @@
         // eslint-disable-next-line no-console
         console.log(1)
         this.showModal = true
+      },
+      close() {
+        this.showModal = false
+      },
+      confirm() {
+        this.list.push(this.textValue)
+        this.textValue = ''
+        this.showModal = false
+      },
+      deleteItem(index) {
+        this.list.splice(index, 1)
       }
     }
   }
@@ -64,7 +86,7 @@
   }
 
   .add {
-    border: 2px solid ;
+    border: 2px solid;
     border-radius: 25px;
     width: 30px;
     height: 30px;
@@ -77,7 +99,7 @@
 
 
   .add:hover {
-    color: pink;
+    color: orange;
   }
 
 
@@ -85,13 +107,6 @@
     width: 400px;
     height: 40px;
     margin: 20px auto;
-  }
-
-  .input1 {
-    margin-bottom: 20px;
-    width: 400px;
-    height: 40px;
-
   }
 
   .content li {
@@ -106,10 +121,13 @@
     bottom: 0;
     margin: auto;
     width: 400px;
-    height: 260px;
+    height: 240px;
     z-index: 15;
-    background: pink;
+    background: whitesmoke;
+    border: 2px solid orange;
   }
+
+
 
 
 </style>
